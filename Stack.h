@@ -6,6 +6,7 @@
 #define ASSIGNMENT4_STACK_H
 
 #include <vector>
+#include <string>
 
 class Stack{
 private:
@@ -41,24 +42,12 @@ public:
     }
 
     double evaluate(){
-        if(this->size() == 0) return 0;
-        if(!std::isdigit(*this->top())){
             char operation = *this->pop();
-            double operand1 = 0;
-            double operand2 = 0;
-            if(!std::isdigit(*this->top())){
-                operand1 = evaluate();
-            }
-            else{
-                operand1 = atof(this->pop());
-            }
-            if(!std::isdigit(*this->top())){
-                operand2 = evaluate();
-            } else{
-                operand2 = atof(this->pop());
-            }
-            switch (operation) {
 
+            double operand1 = (!std::isdigit(*this->top())) ? evaluate() : atof(this->pop());
+            double operand2 = (!std::isdigit(*this->top())) ? evaluate() : atof(this->pop());
+
+            switch (operation) {
                 case '+' :
                     return operand2 + operand1;
                 case '-':
@@ -67,11 +56,7 @@ public:
                     return operand2 * operand1;
                 case '/':
                     return operand2 / operand1;
-
-
             }
-        }
-
     }
 
 };
