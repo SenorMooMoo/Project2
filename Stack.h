@@ -12,7 +12,6 @@ class Stack{
 private:
     std::vector<char*> stackData;
 
-
 public:
 
     Stack()= default;
@@ -38,6 +37,12 @@ public:
     void print(){
         for(char* i : stackData){
             std::cout << i << std::endl;
+        }
+    }
+
+    void setCapacity(size_t capacity){
+        if(stackData.capacity() < capacity){
+            stackData.reserve(capacity);
         }
     }
 
